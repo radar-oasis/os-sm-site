@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>隨身寺廟 OS · 非遺工藝譜系</title>
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<script>
+  window.__APP_BUILD_VERSION__ = 'v13';
+  window.__IS_LOCAL_PREVIEW__ = ['', 'localhost', '127.0.0.1', '::1'].includes(location.hostname);
+  window.__APP_ASSET_VERSION__ = window.__IS_LOCAL_PREVIEW__ ? `dev-${Date.now()}` : window.__APP_BUILD_VERSION__;
+  window.makeVersionedAssetUrl = (src) => {
+    const separator = src.includes('?') ? '&' : '?';
+    return `${src}${separator}v=${encodeURIComponent(window.__APP_ASSET_VERSION__)}`;
+  };
+  window.makeVersionedAssetTag = (src, type) => {
+    const typeAttr = type ? ` type="${type}"` : '';
+    return `<script${typeAttr} src="${window.makeVersionedAssetUrl(src)}"><\/script>`;
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0806; --ink-2:#161210; --ink-3:#221b16; --ink-4:#2e251e;
+    --paper:#f4ead7; --paper-2:#e8dcc2; --paper-3:#c9b791;
+    --silk:#1d2735; --silk-2:#0f1822;
+    --vermilion:#b8331f; --vermilion-deep:#7a1d10;
+    --rust:#c2541b; --gold:#c9a24a; --gold-bright:#e8c773; --gold-deep:#8a6d2a;
+    --jade:#4a8a7a; --jade-deep:#2c5448; --coral:#c8492f; --bone:#d6c9a8;
+    --line: rgba(201,162,74,.18);
+    --line-strong: rgba(201,162,74,.42);
+    --line-bone: rgba(214,201,168,.14);
+    --serif:'Noto Serif SC','Songti SC',serif;
+    --sans:'Noto Sans SC',system-ui,sans-serif;
+    --display:'Cormorant Garamond','Noto Serif SC',serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html, body{
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+    overflow:hidden;
+    height:100vh; width:100vw;
+    user-select:none;
+  }
+  body{
+    background:
+      /* gold tassel light at top */
+      radial-gradient(ellipse 70% 40% at 50% -10%, rgba(232,199,115,.10), transparent 55%),
+      /* vermilion glow lower-left */
+      radial-gradient(ellipse 50% 50% at 18% 80%, rgba(184,51,31,.12), transparent 60%),
+      /* jade glow upper-right */
+      radial-gradient(ellipse 50% 60% at 88% 22%, rgba(74,138,122,.07), transparent 65%),
+      linear-gradient(180deg, #0a0806 0%, #14100c 100%);
+    min-height:100vh;
+  }
+  /* paper grain */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+    background-image: radial-gradient(rgba(201,162,74,.04) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity:.7;
+  }
+  /* faint concentric mandala rings on the wallpaper */
+  body::after{
+    content:""; position:fixed; left:50%; top:55%; transform:translate(-50%,-50%);
+    width:1400px; height:1400px; pointer-events:none; z-index:1; opacity:.18;
+    background:
+      radial-gradient(circle, transparent 38%, rgba(201,162,74,.0) 38%, rgba(201,162,74,.32) 38.5%, transparent 39.5%),
+      radial-gradient(circle, transparent 48%, rgba(201,162,74,.0) 48%, rgba(201,162,74,.22) 48.4%, transparent 49.2%),
+      radial-gradient(circle, transparent 58%, rgba(201,162,74,.0) 58%, rgba(201,162,74,.18) 58.3%, transparent 59%),
+      radial-gradient(circle, transparent 68%, rgba(201,162,74,.0) 68%, rgba(201,162,74,.14) 68.2%, transparent 68.8%);
+  }
+
+  ::selection{ background: var(--gold); color: var(--ink); }
+  ::-webkit-scrollbar{ width:6px; height:6px }
+  ::-webkit-scrollbar-track{ background: transparent }
+  ::-webkit-scrollbar-thumb{ background: rgba(201,162,74,.25); border-radius: 3px }
+  ::-webkit-scrollbar-thumb:hover{ background: rgba(201,162,74,.5) }
+
+  #app{ position:relative; z-index:2; height:100vh; width:100vw; overflow:hidden }
+  input, textarea{ user-select:text }
+</style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+      <rect width="400" height="400" fill="#0a0806"/>
+      <rect x="100" y="100" width="200" height="200" fill="none" stroke="#c9a24a" stroke-width="3"/>
+      <text x="200" y="225" text-anchor="middle" fill="#c9a24a" font-family="serif" font-size="84" font-weight="700">OS</text>
+    </svg>
+  </template>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script>
+    document.write(makeVersionedAssetTag('app-data.js'));
+    document.write(makeVersionedAssetTag('components/atoms.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/overview.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/heatmap.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/genealogy.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/works.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/timeline.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/os-window.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/os-apps.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/os-desktop.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/os-app.jsx', 'text/babel'));
+  </script>
+</body>
+</html>

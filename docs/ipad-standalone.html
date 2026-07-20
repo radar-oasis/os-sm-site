@@ -19,6 +19,10 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
+<!-- Resources referenced from JSX string literals — lifted for the bundler -->
+<meta name="ext-resource-dependency" content="assets/pocket-temple-anatomy.png" data-resource-id="anatomyImg" />
+<meta name="ext-resource-dependency" content="icons/icon-180.png" data-resource-id="icon180" />
+
 <!-- Manifest + icons -->
 <script>
   window.__APP_BUILD_VERSION__ = 'v13';
@@ -96,11 +100,14 @@
 <body>
   <div id="app"></div>
 
-  <template id="__bundler_thumbnail">
+  <template id="__bundler_thumbnail" data-bg-color="#0a0806">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
       <rect width="400" height="400" fill="#0a0806"/>
-      <rect x="100" y="100" width="200" height="200" fill="#b8331f" stroke="#e8c773" stroke-width="4"/>
-      <text x="200" y="250" text-anchor="middle" fill="#f4ead7" font-family="serif" font-size="120" font-weight="700">寺</text>
+      <rect x="60" y="60" width="280" height="280" fill="none" stroke="#c9a24a" stroke-width="2" opacity="0.4"/>
+      <rect x="110" y="110" width="180" height="180" fill="#b8331f" stroke="#e8c773" stroke-width="3"/>
+      <text x="200" y="245" text-anchor="middle" fill="#f4ead7" font-family="serif" font-size="110" font-weight="700">寺</text>
+      <text x="200" y="335" text-anchor="middle" fill="#c9a24a" font-family="serif" font-size="18" letter-spacing="4">隨身寺廟</text>
+      <text x="200" y="370" text-anchor="middle" fill="#8a6d2a" font-family="monospace" font-size="10" letter-spacing="3">SUISHEN · SI MIAO</text>
     </svg>
   </template>
 
@@ -162,12 +169,12 @@
     /* iPad-native primitives + views */
     document.write(makeVersionedAssetTag('components/ipad/atoms.jsx', 'text/babel'));
     document.write(makeVersionedAssetTag('components/ipad/shell.jsx', 'text/babel'));
-    document.write(makeVersionedAssetTag('components/ipad/atlas.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/ipad/atlas.standalone.jsx', 'text/babel'));
     document.write(makeVersionedAssetTag('components/ipad/genealogy.jsx', 'text/babel'));
     document.write(makeVersionedAssetTag('components/ipad/map.jsx', 'text/babel'));
 
     /* Install prompt + root */
-    document.write(makeVersionedAssetTag('components/ipad-install-prompt.jsx', 'text/babel'));
+    document.write(makeVersionedAssetTag('components/ipad-install-prompt.standalone.jsx', 'text/babel'));
     document.write(makeVersionedAssetTag('components/ipad/app.jsx', 'text/babel'));
   </script>
 </body>
