@@ -1,15 +1,15 @@
 // Service Worker — offline cache with network-first app code.
-const CACHE = 'suishen-os-v13';
+const CACHE = 'suishen-os-v14';
 const CORE = [
   './ipad.html',
   './ipad-standalone.html',
-  './manifest.webmanifest?v=13',
-  './app-data.js?v=13',
+  './manifest.webmanifest?v=14',
+  './app-data.js?v=14',
   './components/atoms.jsx',
   './components/overview.jsx',
   './components/heatmap.jsx',
   './components/genealogy.jsx',
-  './components/works.jsx?v=13',
+  './components/works.jsx?v=14',
   './components/timeline.jsx',
   './components/os-window.jsx',
   './components/os-apps.jsx',

@@ -1,6 +1,7 @@
 // Works × craft matrix — data-driven 33 works × 27 crafts grid + detail.
 
 const photoUrl = (p) => p ? p.split('/').map(encodeURIComponent).join('/') : '';
+const mediaUrl = (p) => window.makeMediaAssetUrl ? window.makeMediaAssetUrl(p) : photoUrl(p);
 const craftLabel = (key) => String(key || '').replace(/^C\d{2}\s*/, '');
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 const WORK_MATRIX_HIDDEN_CRAFT_NAMES = new Set([
@@ -125,7 +126,7 @@ const WorkPhotoCarousel = ({ work, gallery, activeIndex, onActiveIndex, onOpen }
         )}
         {activeSrc && isActiveVideo && (
           <video
-            src={photoUrl(activeSrc)}
+            src={mediaUrl(activeSrc)}
             poster={videoPoster ? photoUrl(videoPoster) : undefined}
             controls
             playsInline
@@ -188,7 +189,7 @@ const WorkPhotoCarousel = ({ work, gallery, activeIndex, onActiveIndex, onOpen }
               {isVideo ? (
                 <>
                   <video
-                    src={photoUrl(src)}
+                    src={mediaUrl(src)}
                     poster={videoPoster ? photoUrl(videoPoster) : undefined}
                     muted
                     playsInline
@@ -344,7 +345,7 @@ const WorkPhotoLightbox = ({ work, gallery, activeIndex, onActiveIndex, onClose 
         )}
         {activeSrc && isActiveVideo && (
           <video
-            src={photoUrl(activeSrc)}
+            src={mediaUrl(activeSrc)}
             poster={videoPoster ? photoUrl(videoPoster) : undefined}
             controls
             playsInline

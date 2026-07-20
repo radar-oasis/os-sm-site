@@ -21,12 +21,20 @@
 
 <!-- Manifest + icons -->
 <script>
-  window.__APP_BUILD_VERSION__ = 'v13';
+  window.__APP_BUILD_VERSION__ = 'v14';
   window.__IS_LOCAL_PREVIEW__ = ['', 'localhost', '127.0.0.1', '::1'].includes(location.hostname);
   window.__APP_ASSET_VERSION__ = window.__IS_LOCAL_PREVIEW__ ? `dev-${Date.now()}` : window.__APP_BUILD_VERSION__;
+  window.__APP_MEDIA_BASE_URL__ = window.__IS_LOCAL_PREVIEW__ ? '' : 'https://media.84000.art';
   window.makeVersionedAssetUrl = (src) => {
     const separator = src.includes('?') ? '&' : '?';
     return `${src}${separator}v=${encodeURIComponent(window.__APP_ASSET_VERSION__)}`;
+  };
+  window.makeMediaAssetUrl = (src) => {
+    if (!src) return '';
+    if (/^(https?:)?\/\//.test(src) || src.startsWith('data:') || src.startsWith('blob:')) return src;
+    const encodedPath = src.split('/').map(encodeURIComponent).join('/');
+    const mediaBase = String(window.__APP_MEDIA_BASE_URL__ || '').replace(/\/+$/, '');
+    return mediaBase ? `${mediaBase}/${encodedPath}` : encodedPath;
   };
   window.makeVersionedAssetTag = (src, type) => {
     const typeAttr = type ? ` type="${type}"` : '';
@@ -133,7 +141,7 @@
         window.addEventListener('load', () => { clearLocalPreviewCaches().catch(()=>{}); });
       } else if (location.protocol === 'https:') {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register(`sw.js?v=${encodeURIComponent(window.__APP_ASSET_VERSION__ || 'v13')}`).catch(()=>{});
+          navigator.serviceWorker.register(`sw.js?v=${encodeURIComponent(window.__APP_ASSET_VERSION__ || 'v14')}`).catch(()=>{});
         });
       }
     }
