@@ -43,6 +43,10 @@ git commit -m "Update site content"
 git push origin main
 ```
 
+Video publishing, verification, credential handling, and DNS rollback are
+documented in [OPERATIONS.md](OPERATIONS.md). The canonical public media
+inventory is `docs/media-release.json`; do not add video binaries to Git.
+
 ## DNS Target
 
 After GitHub Pages is ready, the DNS record should be:

@@ -4,7 +4,7 @@
   "description": "Suishen Si Miao · Intangible Cultural Heritage Genealogy Think-Tank · 27 项非遗工艺 · 11 省 20 城 · 千年实物锚点",
   "lang": "zh-CN",
   "dir": "ltr",
-  "start_url": "./ipad.html?v=13",
+  "start_url": "./ipad.html?v=15",
   "scope": "./",
   "display": "fullscreen",
   "orientation": "landscape",
@@ -17,8 +17,8 @@
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
-    { "name": "熱點地圖", "short_name": "地圖", "url": "./ipad.html?v=13#map", "icons": [{"src":"icons/icon-180.png","sizes":"180x180"}] },
-    { "name": "工藝譜系", "short_name": "譜系", "url": "./ipad.html?v=13#genealogy" },
-    { "name": "作品矩陣", "short_name": "矩陣", "url": "./ipad.html?v=13#works" }
+    { "name": "熱點地圖", "short_name": "地圖", "url": "./ipad.html?v=15#map", "icons": [{"src":"icons/icon-180.png","sizes":"180x180"}] },
+    { "name": "工藝譜系", "short_name": "譜系", "url": "./ipad.html?v=15#genealogy" },
+    { "name": "作品矩陣", "short_name": "矩陣", "url": "./ipad.html?v=15#works" }
   ]
 }

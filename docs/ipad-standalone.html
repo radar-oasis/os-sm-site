@@ -24,8 +24,9 @@
 <meta name="ext-resource-dependency" content="icons/icon-180.png" data-resource-id="icon180" />
 
 <!-- Manifest + icons -->
+<script src="media-config.js?v=15"></script>
 <script>
-  window.__APP_BUILD_VERSION__ = 'v13';
+  window.__APP_BUILD_VERSION__ = 'v15';
   window.__IS_LOCAL_PREVIEW__ = ['', 'localhost', '127.0.0.1', '::1'].includes(location.hostname);
   window.__APP_ASSET_VERSION__ = window.__IS_LOCAL_PREVIEW__ ? `dev-${Date.now()}` : window.__APP_BUILD_VERSION__;
   window.makeVersionedAssetUrl = (src) => {
@@ -140,7 +141,7 @@
         window.addEventListener('load', () => { clearLocalPreviewCaches().catch(()=>{}); });
       } else if (location.protocol === 'https:') {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register(`sw.js?v=${encodeURIComponent(window.__APP_ASSET_VERSION__ || 'v13')}`).catch(()=>{});
+          navigator.serviceWorker.register(`sw.js?v=${encodeURIComponent(window.__APP_ASSET_VERSION__ || 'v15')}`).catch(()=>{});
         });
       }
     }
