@@ -1,0 +1,280 @@
+{
+  "schema": "os-sm-media-release-v1",
+  "release_id": "20260720T075011Z-f18bc36f",
+  "base_url": "https://media.84000.art",
+  "object_prefix": "随身寺庙短视频30秒/",
+  "object_count": 45,
+  "total_bytes": 1007254024,
+  "objects": [
+    {
+      "key": "随身寺庙短视频30秒/10-古董款释伽殿指尖款-成品展示.MP4",
+      "size": 6936060,
+      "sha256": "b3aaffdf2c0979facd0ac236355c8119424d2ee55b3b9753f07b483e4f775e7f",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/11-古董款银观音-成品展示.MP4",
+      "size": 3667281,
+      "sha256": "afce9f6f1366146b934c50642e27c748162847ccdc349e7bf7de0a1f4f2594a4",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/11-古董款银观音-成品展示2.MP4",
+      "size": 4243962,
+      "sha256": "ec0b87ee6276712e2f6f52f3896c312d337203f26380da7d5e184fc48e9360c5",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/12-作明佛母-古董款-成品展示.MP4",
+      "size": 40049745,
+      "sha256": "875441315d48be32c641e0f093d2a3276b364140c60f2378de62024473457946",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/13-文殊殿珊瑚版-成品展示.MP4",
+      "size": 39097519,
+      "sha256": "3f6f5df6fa9f5d3a234a426bfb6e4bc70eeecd8ca679203b353b4d1d03c7c4c5",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/14-黄财神-古董款-成品展示.MP4",
+      "size": 37304023,
+      "sha256": "921a471c3115b49a58a4f5264fe4c10cde38d7ded7be170ca5705064a3bf258c",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/15灵山大佛-成品展示.MP4",
+      "size": 39554443,
+      "sha256": "f7f8108a21441fc741ca736dbebeac46551480237516b8c4a378e375dd97ec08",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/15灵山大佛-过程打卡.MP4",
+      "size": 38159101,
+      "sha256": "3ab703daee90c5ca33e56b6a0b409191004ed76349d3c777e3ed573060e9277b",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/16-千年菩提路-成品展示.MP4",
+      "size": 4619208,
+      "sha256": "d694fcbbca2e608fa86c35248c9d90ad3b594e382c282b7220473a7795c04fc9",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/17-一大配两小.MP4",
+      "size": 40707812,
+      "sha256": "808f3107364f8563da1f03a894364bb77f6bbe4d0ffb6046d09cc517acf376d9",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/18-随身舍利塔-成品展示.mp4",
+      "size": 4210505,
+      "sha256": "312f686173c529a3f33d5d5d8b40af23acaa528ce98a80e8e87254300a8281bc",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/19-地藏殿成品展示.MP4",
+      "size": 39975542,
+      "sha256": "c6c9bbc8923ab807deeb55cda48f9093b2467630a1b846b9d5688a56ea09c503",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/2-古董款-严净-成品展示.MP4",
+      "size": 4215828,
+      "sha256": "83f653d92ed6d219443c477db7e71787285df4e352f827f0aafba5ee4cf9f0ae",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/20-坐相千手观音-成品展示.MP4",
+      "size": 39152895,
+      "sha256": "79d575428579ff9f902a7b4543d46f29c338a78ffe42ffc11a0e76e959952e57",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/20-坐相千手观音-造像制作.MP4",
+      "size": 38911691,
+      "sha256": "b83934490a93cf921aa489ba7f15b4ffc65a5c9281e4ed6592c41a04a5a9cbbd",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/21-古董款佛塔-成品展示.MP4",
+      "size": 39432997,
+      "sha256": "20ad130cad121299f8c229eae81320033127b734d446608df272553dbd738ade",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/22-当代款-黄财神mini款-制作过程.mp4",
+      "size": 4746578,
+      "sha256": "e74e6f3446fc14a45bd9a63b46314bf5f38fe0438522592741403ce2dde244fe",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/22-当代款-黄财神mini款-成品展示.mp4",
+      "size": 4111399,
+      "sha256": "988431e648a89f5b521946f5f1ffca5e74bb555140c819146df912e6ba0a2a05",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/23-古董款紫檀的传承成品展示-制作过程.MP4",
+      "size": 2732336,
+      "sha256": "e704bb6499f8d14bb5b965f209b938ab95499a244521ec3d33334cfa71768951",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/23-古董款紫檀的传承成品展示-配链.MP4",
+      "size": 40497413,
+      "sha256": "0bce2b38001bab4dd124da969eb1a2dbac7d557b01de5c729c84ae8de06f3add",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/23-古董款紫檀的传承成品展示.MP4",
+      "size": 39721864,
+      "sha256": "4e36f611212fb703242fcd0a1a0bc3f0c2cff26db3180e2df42135d693ac4ca8",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/24-古董款-雪域三尊-无字幕-有配音-制作过程1.mp4",
+      "size": 4348265,
+      "sha256": "12ecf2412944f1eb5d47356544d919a89e56fe6c72513424196fd2a32c991013",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/25-古董款三佛殿-制作过程.MP4",
+      "size": 5029120,
+      "sha256": "9bd260ef12590af3153ccc5ebf171a00013c05ec78ac30bfccb17111c2072017",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/26-四臂观音 红珊瑚古董款.MP4",
+      "size": 40080801,
+      "sha256": "d692ec56b32f7f714e1e7ec14a821d6c838b7316c992e9059c9730c57dbfec06",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/26-四臂观音-红珊瑚-成品展示.MP4",
+      "size": 2443152,
+      "sha256": "e052436672e7de1c0d42afd0e1a642ad2246df5e109f4c1a90566fd09e092cf8",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/27-四臂观音-玲珑版 成品展示.MP4",
+      "size": 39817518,
+      "sha256": "76871773c14fcd9e1251e8842061fe46c2f6c703baa09ba38594a55c47b89861",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/27-四臂观音-玲珑版制作过程.MP4",
+      "size": 2551314,
+      "sha256": "d863b2dbe896eb4050dc7e9565498ffbab02d88812832591788ec46cf59af0e6",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/28-玲珑款药师-成品展示.MP4",
+      "size": 38958415,
+      "sha256": "de9ae4368ebcc3b64bf21329c061d6ab0356143e19ed9881522e3d0aa807764d",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/29-莲师古董款过-成品展示.MP4",
+      "size": 40042548,
+      "sha256": "ad4da9994e319e4e2321b0d643f1391a3071eff1721f859f858415187cc4cb3e",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/29-莲师古董款过程制作.MP4",
+      "size": 39670961,
+      "sha256": "41eb20969030c2e89bb09ad4c9c10d0416f881e3933f68cbc070c45f42eedde8",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/30-阿閦佛古董款制作过程.MP4",
+      "size": 39037287,
+      "sha256": "95b3004b08626f5f99504fa0a2c5bc43d2920657e0d721aa455821a5e2c55684",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/30-阿閦佛古董款成品展示.MP4",
+      "size": 39081497,
+      "sha256": "6da2d2176fb72ed2fc3cf207673319a9111b2120ddf224811f8acde4920552c3",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/31-当代款虚空藏菩萨-无字幕.mp4",
+      "size": 2273732,
+      "sha256": "8ce953772f9cf43d215495a2d28f9c5ea93a87297405b682e7cce2527cff4035",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/32当代款-阿弥陀佛殿无字幕.mp4",
+      "size": 1859905,
+      "sha256": "510641b9873b712abeed5c55a421ebb0f081e643549cc9a639c08f6e2a74bc12",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/33-当代款金刚萨埵-成品展示.mp4",
+      "size": 2695424,
+      "sha256": "0fc2f46dc156c2c9137c5d385e0021b9c51b7dd77cce9ff0ebcc6d0d3ae645d2",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/4-站姿牵手观音-成品展示.MP4",
+      "size": 39134230,
+      "sha256": "cd250b251f5d711c516e2b9a12360cad5cc2e2155590590706f6533bdf24fbfe",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/5-古董款单层舍利塔.mp4",
+      "size": 3101316,
+      "sha256": "2a00a7502ee0c6676ad45be18e700ef71f9226ed090aaf4e4fc8150d66092acf",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/6 当代款文殊-成品展示.MP4",
+      "size": 38744368,
+      "sha256": "774430669f0ba7af79e66ab0f9c9939d7131e5d7d803edb063828bafcb621e01",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/6-当代款文殊-7款.MP4",
+      "size": 3072969,
+      "sha256": "936abb8be24eff63c940f9d466408e3f3d79f6ea2d7c5d28af51962c5abc68b5",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/7-古董款-绿度母-制作过程.MP4",
+      "size": 2194536,
+      "sha256": "371939b2599b1d82d789669bde9564ad76ae2dd8881129282de2d6a1a5241b43",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/7-古董款-绿度母-成品展示.MP4",
+      "size": 2673126,
+      "sha256": "c7fa871e3cffac2b37159e193166cd4bef3c183d6cc0f49e0f47156d80111dec",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/8-古董款-长寿三尊-制作过程.MP4",
+      "size": 26281223,
+      "sha256": "31742139ed88c7a4a60c41a2c63abf93352397c5faabf761c26cc034bc52a1fa",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/8-古董款-长寿三尊-成品展示.MP4",
+      "size": 30174055,
+      "sha256": "55f03b0295995d24673ed09156aa4516db1b157f4a202b7f1799f62f100b5055",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/9-古董款尸陀林-制作过程.MP4",
+      "size": 20412173,
+      "sha256": "8827de017f3839142d7d5d4cff959addb0201e11b388109a507fb16e7f7d9aa7",
+      "content_type": "video/mp4"
+    },
+    {
+      "key": "随身寺庙短视频30秒/9-古董款尸陀林-成品展示.MP4",
+      "size": 31527887,
+      "sha256": "5952df302ffd69b5cf9407ac343368d1a5463553303d58a8f7ecf3a5fb40f587",
+      "content_type": "video/mp4"
+    }
+  ]
+}

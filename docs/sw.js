@@ -1,15 +1,17 @@
 // Service Worker — offline cache with network-first app code.
-const CACHE = 'suishen-os-v14';
+const CACHE = 'suishen-os-v15';
 const CORE = [
   './ipad.html',
   './ipad-standalone.html',
-  './manifest.webmanifest?v=14',
-  './app-data.js?v=14',
+  './manifest.webmanifest?v=15',
+  './app-data.js?v=15',
+  './media-config.js?v=15',
+  './media-release.json?v=20260720T075011Z-f18bc36f',
   './components/atoms.jsx',
   './components/overview.jsx',
   './components/heatmap.jsx',
   './components/genealogy.jsx',
-  './components/works.jsx?v=14',
+  './components/works.jsx?v=15',
   './components/timeline.jsx',
   './components/os-window.jsx',
   './components/os-apps.jsx',
@@ -198,6 +200,13 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
+
+  const url = new URL(req.url);
+  if (url.hostname === 'media.84000.art' || /\.mp4$/i.test(url.pathname)) {
+    // Video delivery is owned by the CDN. Never cache it and never substitute
+    // an HTML app shell for a failed media request.
+    return;
+  }
 
   if (shouldTryNetworkFirst(req)) {
     e.respondWith(

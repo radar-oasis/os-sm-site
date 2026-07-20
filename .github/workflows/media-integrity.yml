@@ -1,0 +1,64 @@
+name: Media integrity
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: media-integrity-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate references, manifest, entrypoints, and service worker
+        run: python3 scripts/media_release.py plan
+      - name: Run site smoke gate
+        run: bash scripts/smoke.sh
+      - name: Scan tracked files for common credential patterns
+        run: |
+          if git grep -nE '(AKID[0-9A-Za-z]{20,}|SecretKey[[:space:]]*[:=][[:space:]]*[0-9A-Za-z+/]{16,}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY)' -- . ':!docs/media-release.json'; then
+            echo 'Credential-like material found in tracked files.' >&2
+            exit 1
+          fi
+
+  deployed-site:
+    if: github.event_name == 'push'
+    needs: static-contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for GitHub Pages and validate deployed manifest
+        run: |
+          for attempt in $(seq 1 20); do
+            if bash scripts/smoke.sh https://os-sm.84000.art/; then
+              exit 0
+            fi
+            sleep 15
+          done
+          echo 'GitHub Pages did not converge within five minutes.' >&2
+          exit 1
+
+  public-media:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    needs: static-contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify private origin and all 45 public videos
+        run: python3 scripts/media_release.py verify --private-origin --cdn
