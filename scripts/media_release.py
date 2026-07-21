@@ -10,8 +10,10 @@ import json
 import os
 import pathlib
 import re
+import ssl
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -27,6 +29,10 @@ PREFIX = "随身寺庙短视频30秒/"
 EXPECTED_ENTRIES = ("index.html", "ipad.html", "ipad-standalone.html", "os.html")
 REFERENCE_RE = re.compile(r"[\"'](随身寺庙短视频30秒/[^\"']+\.(?:mp4|MP4))[\"']")
 CONTROL_RE = re.compile(r"[\x00-\x1f\x7f]")
+REQUEST_ATTEMPTS = 3
+REQUEST_RETRY_DELAY_SECONDS = 0.5
+REQUEST_TIMEOUT_SECONDS = 10
+USE_CURL_FALLBACK = False
 
 
 class ReleaseError(RuntimeError):
@@ -114,12 +120,15 @@ def plan(source_root: pathlib.Path | None) -> tuple[dict, list[str]]:
     folded = [pathlib.PurePosixPath(key).name.casefold() for key in manifest_keys]
     if len(folded) != len(set(folded)):
         raise ReleaseError("case-insensitive duplicate filenames in media-release.json")
+    reference_folded = [pathlib.PurePosixPath(key).name.casefold() for key in references]
+    if len(reference_folded) != len(set(reference_folded)):
+        raise ReleaseError("case-insensitive duplicate filenames in work references")
 
     for key in set(references) | set(manifest_keys):
         validate_key(key, legacy_keys=legacy_keys)
     missing = sorted(set(references) - set(manifest_keys))
     extra = sorted(set(manifest_keys) - set(references))
-    if missing or extra:
+    if source_root is None and (missing or extra):
         raise ReleaseError(f"reference/manifest mismatch: missing={missing}, extra={extra}")
     if manifest["object_count"] != len(manifest_objects):
         raise ReleaseError("manifest object_count does not match objects")
@@ -131,14 +140,29 @@ def plan(source_root: pathlib.Path | None) -> tuple[dict, list[str]]:
         raise ReleaseError("every manifest object must include a lowercase SHA-256")
 
     if source_root is not None:
-        for item in manifest_objects:
-            path = source_root / item["key"]
+        if extra:
+            raise ReleaseError(
+                "removing media references is unsupported because the publisher cannot delete objects: "
+                f"{extra}"
+            )
+        known = {item["key"]: item for item in manifest_objects}
+        changes = {"new": 0, "changed": 0, "unchanged": 0}
+        for key in references:
+            path = source_root / key
             if not path.is_file():
                 raise ReleaseError(f"local media missing: {path}")
-            if path.stat().st_size != item["size"]:
-                raise ReleaseError(f"local media size mismatch: {path}")
-            if sha256_file(path) != item["sha256"]:
-                raise ReleaseError(f"local media SHA-256 mismatch: {path}")
+            prior = known.get(key)
+            local_hash = sha256_file(path)
+            if prior is None:
+                changes["new"] += 1
+            elif path.stat().st_size == prior["size"] and local_hash == prior["sha256"]:
+                changes["unchanged"] += 1
+            else:
+                changes["changed"] += 1
+        print(
+            "PLAN source: "
+            f"new={changes['new']} changed={changes['changed']} unchanged={changes['unchanged']}"
+        )
 
     validate_static_contract(manifest)
     return manifest, references
@@ -221,11 +245,10 @@ def upload(args: argparse.Namespace) -> None:
 
 
 def write_manifest(source_root: pathlib.Path) -> None:
-    current = load_manifest()
+    current, references = plan(source_root)
     legacy_keys = {item["key"] for item in current["objects"]}
-    references = app_references()
     objects = []
-    for key in sorted(set(references)):
+    for key in sorted(references):
         validate_key(key, legacy_keys=legacy_keys)
         path = source_root / key
         if not path.is_file():
@@ -274,13 +297,69 @@ def write_manifest(source_root: pathlib.Path) -> None:
     print("Updated docs/media-release.json, docs/media-config.js, and docs/sw.js together.")
 
 
-def request(url: str, method: str, headers: dict[str, str] | None = None) -> tuple[int, dict[str, str]]:
-    req = urllib.request.Request(url, method=method, headers=headers or {})
+def curl_request(
+    url: str,
+    method: str,
+    headers: dict[str, str] | None,
+    prior_error: BaseException,
+) -> tuple[int, dict[str, str]]:
+    curl = shutil_which("curl")
+    if not curl:
+        raise OSError("curl fallback is unavailable") from prior_error
+    command = [curl, "--http1.1", "--silent", "--show-error", "--max-time", "30"]
+    if method == "HEAD":
+        command.append("--head")
+    else:
+        command.extend(["--request", method])
+    for key, value in (headers or {}).items():
+        command.extend(["--header", f"{key}: {value}"])
+    command.extend(["--dump-header", "-", "--output", os.devnull, url])
+    result = subprocess.run(command, check=False, capture_output=True, text=True)
+    if result.returncode:
+        detail = result.stderr.strip() or "no error detail"
+        raise OSError(f"curl fallback failed with exit {result.returncode}: {detail}") from prior_error
+    blocks = [
+        block
+        for block in re.split(r"\r?\n\r?\n", result.stdout.strip())
+        if block.startswith("HTTP/")
+    ]
+    if not blocks:
+        raise OSError("curl fallback returned no HTTP response headers") from prior_error
+    lines = blocks[-1].splitlines()
     try:
-        with urllib.request.urlopen(req, timeout=30) as response:
-            return response.status, {key.lower(): value for key, value in response.headers.items()}
-    except urllib.error.HTTPError as error:
-        return error.code, {key.lower(): value for key, value in error.headers.items()}
+        status = int(lines[0].split()[1])
+    except (IndexError, ValueError) as error:
+        raise OSError(f"curl fallback returned an invalid status line: {lines[0]}") from error
+    response_headers: dict[str, str] = {}
+    for line in lines[1:]:
+        if ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        response_headers[key.strip().lower()] = value.strip()
+    return status, response_headers
+
+
+def request(url: str, method: str, headers: dict[str, str] | None = None) -> tuple[int, dict[str, str]]:
+    global USE_CURL_FALLBACK
+    if USE_CURL_FALLBACK:
+        return curl_request(url, method, headers, OSError("urllib disabled after persistent transient failures"))
+    last_error: BaseException | None = None
+    for attempt in range(1, REQUEST_ATTEMPTS + 1):
+        req = urllib.request.Request(url, method=method, headers=headers or {})
+        try:
+            with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT_SECONDS) as response:
+                return response.status, {key.lower(): value for key, value in response.headers.items()}
+        except urllib.error.HTTPError as error:
+            return error.code, {key.lower(): value for key, value in error.headers.items()}
+        except (urllib.error.URLError, TimeoutError, ConnectionResetError, ssl.SSLError) as error:
+            last_error = error
+            if attempt == REQUEST_ATTEMPTS:
+                break
+            time.sleep(REQUEST_RETRY_DELAY_SECONDS * (2 ** (attempt - 1)))
+    if last_error is None:
+        raise AssertionError("request retry loop exhausted without an error")
+    USE_CURL_FALLBACK = True
+    return curl_request(url, method, headers, last_error)
 
 
 def public_url(manifest: dict, key: str) -> str:
