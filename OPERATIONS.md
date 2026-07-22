@@ -6,7 +6,11 @@ privately pulls from `os-sm-media-1392306384` in `ap-nanjing`.
 
 ## Publisher setup
 
-1. Sign in with the `os-sm-media-publisher` Tencent Cloud sub-account.
+1. Sign in through Tencent Cloud's sub-account login page using
+   `os-sm-media-publisher@<owner-account-id-or-alias>`. The publisher CAM UIN
+   is an identity check value, not the owner account ID used in the login
+   name. Obtain the owner account ID or alias and the one-time password through
+   a separate secure channel.
 2. Change the temporary password immediately and enroll an MFA authenticator.
 3. Install COSBrowser for occasional uploads. Select the existing
    `os-sm-media-1392306384` bucket and keep every video below
